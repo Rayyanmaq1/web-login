@@ -10,8 +10,23 @@
 </head>
 
 <body>
-  <header>
+<?php 
+    session_start();
+    
+    if(isset($_SESSION['status']))
+    {
+        ?>
+            <div class="alert-danger" role="alert">
+               <?= $_SESSION['status']; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php 
+        unset($_SESSION['status']);
+    }
+
+?>
     <div class="outer-Container">
+   
 
       <div class="inner-Container">
 
@@ -21,12 +36,11 @@
           </div>
           <h1 class="heading">Login</h1>
           <form action="login.php" method="post">
-
             <div class="input-container">
               <i class="fa fa-envelope icon">
                 <img src="assets/icons8-envelope-96.png" id="icon">
               </i>
-              <input class="input-field" type="text" placeholder="Email" name="email">
+              <input class="input-field" type="text" placeholder="Email" name="email" required >
             </div>
 
             <div class="input-container">
@@ -35,11 +49,9 @@
                 <img src="assets/icons8-password-1-100.png" id="icon">
 
               </i>
-              <input class="input-field" type="password" placeholder="Password" name="psw">
+              <input class="input-field" type="password" placeholder="Password" name="psw" required >
             </div>
-
-
-            <div class="btm-fun">
+            <!-- <div class="btm-fun">
               <div class="btm-remember">
                 <input type="checkbox" name="remember" value="remember">
                 Remember me
@@ -47,34 +59,45 @@
               <div class="btm-forget">
                 <a href="#">Forgot password?</a>
               </div>
-            </div>
-
+            </div> -->
 
         </div>
+        <button class="btm" >
 
-        </form>
-        <div class="register">
-          <a href="/registeration.html">
-            <img src="assets/icons8-registration-96.png" alt="" width="20" height="20">
-          </a>
-        </div>
-
-
-        <button class="btm">
           <div class="btnOuter"></div>
+
           <div class="btnInner">
+
             <h4>Login</h4>
           </div>
         </button>
+
+        </form>
+        <div id="register">
+         
+            <img src="assets/icons8-registration-96.png" alt="" width="20" height="20">
+         
+        </div>
+
+
+
+        
       </div>
 
 
     </div>
 
     </div>
+    
+    <script>
+    var btn = document.getElementById('register');
+    btn.addEventListener('click', function() {
+      document.location.href = 'registeration.php';
+    });
+  </script>
 
-  </header>
 
 </body>
+
 
 </html>
